@@ -1,0 +1,1631 @@
+/* CSS Custom Properties for Easy Album Cover Adjustments */
+:root {
+    /* Album Cover Dimensions - Adjust these numbers to resize the album cover */
+    --album-width: 100%;
+    --album-height: 100%;
+    --album-max-width: 800px;
+    --album-max-height: 600px;
+    --album-min-height: 80vh;
+    
+    /* Album Cover Border and Shadow */
+    --album-border-radius: 20px;
+    --album-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 215, 0, 0.3) inset;
+    
+    /* Cover Content Dimensions */
+    --cover-content-padding: 40px 30px;
+    --cover-content-max-width: 500px;
+    --cover-content-border-radius: 15px;
+    
+    /* Title Font Sizes */
+    --title-h1-size: 3rem;
+    --title-h2-size: 2.5rem;
+    --subtitle-size: 1.2rem;
+    
+    /* Image Dimensions */
+    --image-max-width: 220px;
+    --image-max-height: 170px;
+    --image-border-radius: 18px;
+    --image-border-width: 4px;
+    
+    /* Sunflower Border */
+    --sunflower-border-padding: 20px;
+    --sunflower-border-radius: 15px;
+    --sunflower-border-width: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Great Vibes', 'Dancing Script', cursive;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c, #daa520, #bdb76b);
+    background-size: 400% 400%;
+    animation: gentleGradient 8s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+}
+
+@keyframes gentleGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Sunflower Petals Background */
+.petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.petal {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e, #f4a460);
+    border-radius: 50% 0 50% 50%;
+    animation: petalFloat 10s infinite linear;
+}
+
+@keyframes petalFloat {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Music Player */
+.music-player {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.music-btn {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+}
+
+.music-info {
+    font-size: 0.9rem;
+    color: #8b4513;
+    font-weight: bold;
+}
+
+/* Beautiful Loading Screen */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-content {
+    text-align: center;
+    color: #8b4513;
+}
+
+.sunflower-garden {
+    margin-bottom: 30px;
+}
+
+.sunflower {
+    font-size: 3rem;
+    margin: 0 10px;
+    animation: sunflowerBloom 2s infinite;
+    display: inline-block;
+}
+
+.sunflower:nth-child(1) { animation-delay: 0s; }
+.sunflower:nth-child(2) { animation-delay: 0.4s; }
+.sunflower:nth-child(3) { animation-delay: 0.8s; }
+.sunflower:nth-child(4) { animation-delay: 1.2s; }
+.sunflower:nth-child(5) { animation-delay: 1.6s; }
+
+@keyframes sunflowerBloom {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(10deg); }
+}
+
+.loading-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #8b4513;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.loading-bar {
+    width: 300px;
+    height: 8px;
+    background: rgba(139, 69, 19, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.loading-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffed4e, #f4a460);
+    border-radius: 4px;
+    animation: loadingProgress 3s ease-in-out;
+}
+
+@keyframes loadingProgress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Beautiful Album Container */
+.friendship-album {
+    position: relative;
+    width: 90vw;
+    max-width: var(--album-max-width);
+    height: var(--album-min-height);
+    max-height: var(--album-max-height);
+    perspective: 2000px;
+    z-index: 10;
+}
+
+/* Album Cover */
+.album-cover {
+    position: absolute;
+    width: var(--album-width);
+    height: var(--album-height);
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: var(--album-border-radius);
+    box-shadow: var(--album-box-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    z-index: 20;
+    transform-origin: left center;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+.album-cover.opened {
+    transform: rotateY(-180deg);
+}
+
+.cover-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sunflower-border {
+    position: absolute;
+    top: var(--sunflower-border-padding);
+    left: var(--sunflower-border-padding);
+    right: var(--sunflower-border-padding);
+    bottom: var(--sunflower-border-padding);
+    border: var(--sunflower-border-width) solid #ffd700;
+    border-radius: var(--sunflower-border-radius);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.sunflower-border span {
+    font-size: 1.5rem;
+    animation: borderSunflower 3s infinite;
+}
+
+.sunflower-border span:nth-child(1) { animation-delay: 0s; }
+.sunflower-border span:nth-child(2) { animation-delay: 0.6s; }
+.sunflower-border span:nth-child(3) { animation-delay: 1.2s; }
+.sunflower-border span:nth-child(4) { animation-delay: 1.8s; }
+.sunflower-border span:nth-child(5) { animation-delay: 2.4s; }
+
+@keyframes borderSunflower {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.cover-content {
+    text-align: center;
+    color: #8b4513;
+    padding: var(--cover-content-padding);
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--cover-content-border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: var(--cover-content-max-width);
+}
+
+.cover-title h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: var(--title-h1-size);
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #8b4513;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cover-title h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: var(--title-h2-size);
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #daa520;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cover-subtitle p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #8b4513;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.cover-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+    animation: imageGlow 3s ease-in-out infinite alternate;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.friendship-photo {
+    max-width: var(--image-max-width);
+    max-height: var(--image-max-height);
+    width: auto;
+    height: auto;
+    border-radius: var(--image-border-radius);
+    box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+    border: var(--image-border-width) solid #ffd700;
+    transition: all 0.4s ease;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+.friendship-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+}
+
+@keyframes imageGlow {
+    0% { 
+        filter: brightness(1) saturate(1);
+        transform: scale(1);
+    }
+    100% { 
+        filter: brightness(1.1) saturate(1.2);
+        transform: scale(1.02);
+    }
+}
+
+.floating-sunflowers {
+    margin: 30px 0;
+}
+
+.floating-sunflowers span {
+    font-size: 1.8rem;
+    margin: 0 8px;
+    animation: sunflowerFloat 3s infinite;
+    display: inline-block;
+}
+
+.floating-sunflowers span:nth-child(1) { animation-delay: 0s; }
+.floating-sunflowers span:nth-child(2) { animation-delay: 0.6s; }
+.floating-sunflowers span:nth-child(3) { animation-delay: 1.2s; }
+.floating-sunflowers span:nth-child(4) { animation-delay: 1.8s; }
+.floating-sunflowers span:nth-child(5) { animation-delay: 2.4s; }
+
+@keyframes sunflowerFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.1); }
+}
+
+.open-hint {
+    margin-top: 40px;
+}
+
+.open-hint p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #8b4513;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.arrow {
+    font-size: 1.5rem;
+    animation: arrowBounce 2s infinite;
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* Album Pages with 3D Effect */
+.album-pages {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 15;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff9f0, #fff5e6);
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 215, 0, 0.2) inset;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    transform-style: preserve-3d;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+    overflow-y: auto;
+    overflow-x: hidden;
+    opacity: 0;
+    pointer-events: none;
+    backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+.title-page {
+    z-index: 6;
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.story-page {
+    z-index: 5;
+    transform: translateX(100%);
+}
+
+.story-page-2 {
+    z-index: 4;
+    transform: translateX(200%);
+}
+
+.gallery-page {
+    z-index: 3;
+    transform: translateX(300%);
+}
+
+.message-page {
+    z-index: 2;
+    transform: translateX(400%);
+}
+
+.hug-page {
+    z-index: 1;
+    transform: translateX(500%);
+}
+
+.page.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.page.turning {
+    transform: rotateY(-180deg);
+    opacity: 0;
+}
+
+.page-content {
+    text-align: center;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Page 1: Title Page */
+.page-decoration {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.corner-sunflowers span {
+    font-size: 2rem;
+    margin: 0 5px;
+    animation: cornerSunflower 4s infinite;
+}
+
+.corner-sunflowers span:nth-child(2) { animation-delay: 2s; }
+
+@keyframes cornerSunflower {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(15deg); }
+}
+
+.page-title h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #8b4513;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.title-decoration {
+    font-size: 3rem;
+    animation: titleSunflower 3s infinite;
+    margin-bottom: 30px;
+}
+
+@keyframes titleSunflower {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(10deg); }
+}
+
+.page-subtitle p {
+    font-size: 1.2rem;
+    color: #8b4513;
+    font-style: italic;
+    margin-bottom: 40px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navigation-hint {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 215, 0, 0.2);
+    border-radius: 10px;
+    border: 1px solid #ffd700;
+}
+
+.navigation-hint p {
+    font-size: 0.9rem;
+    color: #8b4513;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Show/hide navigation hints based on screen size */
+.desktop-hint {
+    display: block;
+}
+
+.mobile-hint {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop-hint {
+        display: none;
+    }
+    
+    .mobile-hint {
+        display: block;
+    }
+}
+
+/* Page 2: Story Page */
+.story-page .page-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    text-align: left;
+    align-items: flex-start;
+    min-height: auto;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.photo-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-placeholder {
+    margin-bottom: 20px;
+}
+
+.photo-frame {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #ffd700;
+    border-radius: 15px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.meeting-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.photo-content {
+    text-align: center;
+    color: #8b4513;
+}
+
+.photo-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.photo-content p {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.photo-hint {
+    font-size: 0.8rem;
+    color: #daa520;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.photo-caption p {
+    font-size: 1rem;
+    color: #8b4513;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.story-content h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #8b4513;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.story-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #6a5acd;
+    margin-bottom: 15px;
+    text-align: justify;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.memory-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border: 1px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.memory-highlight span {
+    font-size: 1.5rem;
+    animation: highlightHeart 2s infinite;
+}
+
+@keyframes highlightHeart {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.memory-highlight p {
+    font-size: 1rem;
+    color: #8b4513;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Page 3: Adventures Together */
+.story-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.memory-timeline {
+    margin-bottom: 30px;
+}
+
+.memory-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border-left: 4px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.memory-icon {
+    font-size: 1.5rem;
+    animation: memoryIcon 2s infinite;
+}
+
+@keyframes memoryIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.memory-item p {
+    font-size: 1rem;
+    color: #6a5acd;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.friendship-quote {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border: 2px solid #ffd700;
+    font-style: italic;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.friendship-quote p {
+    font-size: 1.1rem;
+    color: #8b4513;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Page 4: Photo Gallery */
+.gallery-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+    justify-items: center;
+    align-items: center;
+}
+
+.gallery-item {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border: 1px solid #ffd700;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 200px;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-photo {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+    border: 2px solid #ffd700;
+    animation: photoGlow 2s ease-in-out infinite alternate;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 13px;
+    transition: all 0.3s ease;
+}
+
+.image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 248, 220, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+    transition: all 0.3s ease;
+}
+
+.placeholder-icon {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.image-placeholder p {
+    font-size: 0.7rem;
+    color: #8b4513;
+    text-align: center;
+    margin: 0;
+}
+
+@keyframes photoGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.gallery-item p {
+    font-size: 0.9rem;
+    color: #8b4513;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-message {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-message p {
+    font-size: 1rem;
+    color: #8b4513;
+    font-style: italic;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Page 5: Heartfelt Message */
+.heartfelt-message h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.message-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #6a5acd;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.signature {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    border-radius: 10px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.signature p {
+    font-size: 1.2rem;
+    color: #daa520;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.signature-name {
+    font-size: 1rem;
+    color: #8b4513;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Page 6: Virtual Hug */
+.hug-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hug-message p {
+    font-size: 1.1rem;
+    color: #6a5acd;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.virtual-hug-btn {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 30px;
+    padding: 15px 30px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.virtual-hug-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(255, 215, 0, 0.4);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+    animation: hugIcon 2s infinite;
+}
+
+@keyframes hugIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.hug-counter {
+    font-size: 1rem;
+    color: #8b4513;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.page-number {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 0.8rem;
+    color: #ccc;
+    font-family: 'Shadows Into Light', cursive;
+}
+
+/* Navigation Controls */
+.album-navigation {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 25;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.nav-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #8b4513;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+.close-album-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 25;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.close-album-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+/* Beautiful Hug Popup */
+.hug-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hug-popup.show {
+    display: flex;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, #fff8dc, #f0e68c);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    max-width: 90vw;
+    margin: 20px;
+    animation: popupSlideIn 0.5s ease;
+    border: 2px solid #ffd700;
+}
+
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.hug-animation {
+    margin-bottom: 20px;
+}
+
+.hug-characters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.character {
+    font-size: 3rem;
+    animation: characterHug 1.5s infinite;
+}
+
+.character:nth-child(2) {
+    animation-delay: 0.75s;
+}
+
+@keyframes characterHug {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.1); }
+}
+
+.popup-content h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #8b4513;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content p {
+    font-size: 1.1rem;
+    color: #6a5acd;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.hug-message p {
+    font-size: 1rem;
+    color: #8b4513;
+    font-style: italic;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content button {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    color: white;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+}
+
+
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .friendship-album {
+        width: 95vw;
+        height: 85vh;
+        max-height: 500px;
+    }
+    
+    .cover-title h1 {
+        font-size: 2rem;
+    }
+    
+    .cover-title h2 {
+        font-size: 1.6rem;
+    }
+    
+    .cover-content {
+        padding: 30px 20px;
+        max-width: 400px;
+    }
+    
+    .cover-image {
+        margin: 20px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+    
+    .friendship-photo {
+        max-width: 180px;
+        max-height: 140px;
+        width: auto;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.35);
+        border: 3px solid #ffd700;
+        object-fit: cover;
+        transition: all 0.4s ease;
+        animation: imageGlow 3s ease-in-out infinite alternate;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .friendship-photo:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
+    }
+    
+    .story-page .page-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+        align-items: flex-start;
+        min-height: auto;
+    }
+    
+    .photo-frame {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .meeting-photo {
+        border-radius: 10px;
+    }
+    
+    .page-title h1 {
+        font-size: 1.8rem;
+    }
+    
+    .story-content h2 {
+        font-size: 1.4rem;
+    }
+    
+    .story-text p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .photo-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        justify-items: center;
+        align-items: center;
+    }
+    
+    .gallery-item {
+        padding: 15px;
+        max-width: 180px;
+        width: 100%;
+    }
+    
+    .gallery-photo {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .gallery-image {
+        border-radius: 10px;
+    }
+    
+    .image-placeholder {
+        border-radius: 10px;
+    }
+    
+    .placeholder-icon {
+        font-size: 1.5rem;
+    }
+    
+    .image-placeholder p {
+        font-size: 0.6rem;
+    }
+    
+    .heartfelt-message h2 {
+        font-size: 1.5rem;
+    }
+    
+    .message-text p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .hug-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .virtual-hug-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+    
+    /* Hide navigation buttons on mobile */
+    .album-navigation {
+        display: none !important;
+    }
+    
+    /* Hide close button on mobile */
+    .close-album-btn {
+        display: none !important;
+    }
+    
+    .popup-content {
+        padding: 25px;
+        margin: 15px;
+    }
+    
+    .popup-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .character {
+        font-size: 2.2rem;
+    }
+    
+    .music-player {
+        top: 10px;
+        left: 10px;
+        padding: 6px 10px;
+    }
+    
+    .music-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .music-info {
+        font-size: 0.7rem;
+    }
+    
+    /* Adjust page content for mobile */
+    .page-content {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: calc(100vh - 100px);
+    }
+    
+    /* Adjust memory items for mobile */
+    .memory-item {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .memory-item p {
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust signature for mobile */
+    .signature {
+        padding: 15px;
+        margin-top: 20px;
+    }
+    
+    .signature p {
+        font-size: 1rem;
+    }
+    
+    .signature-name {
+        font-size: 0.9rem;
+    }
+    
+    /* Adjust hug section for mobile */
+    .hug-message p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .hug-counter {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .surprise-btn {
+        font-size: 0.9rem;
+        padding: 10px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .friendship-album {
+        width: 98vw;
+        height: 90vh;
+        max-height: 450px;
+    }
+    
+    .cover-title h1 {
+        font-size: 1.6rem;
+    }
+    
+    .cover-title h2 {
+        font-size: 1.3rem;
+    }
+    
+    .cover-content {
+        padding: 25px 15px;
+        max-width: 350px;
+    }
+    
+    .cover-image {
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+    
+    .friendship-photo {
+        max-width: 150px;
+        max-height: 120px;
+        width: auto;
+        height: auto;
+        border-radius: 14px;
+        box-shadow: 0 6px 20px rgba(139, 69, 19, 0.3);
+        border: 3px solid #ffd700;
+        object-fit: cover;
+        transition: all 0.4s ease;
+        animation: imageGlow 3s ease-in-out infinite alternate;
+        display: block;
+        margin: 0 auto;
+    }
+    
+    .friendship-photo:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(139, 69, 19, 0.3);
+    }
+    
+    .page-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .story-content h2 {
+        font-size: 1.2rem;
+    }
+    
+    .story-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .story-page .page-content {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px;
+        align-items: flex-start;
+        min-height: auto;
+    }
+    
+    .heartfelt-message h2 {
+        font-size: 1.3rem;
+    }
+    
+    .message-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    
+    .hug-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .virtual-hug-btn {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+    
+    .popup-content {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .popup-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .character {
+        font-size: 1.8rem;
+    }
+    
+    .music-player {
+        top: 8px;
+        left: 8px;
+        padding: 5px 8px;
+    }
+    
+    .music-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+    
+    .music-info {
+        font-size: 0.65rem;
+    }
+    
+    /* Further adjust page content for small mobile */
+    .page-content {
+        padding: 12px;
+        overflow-y: auto;
+        max-height: calc(100vh - 80px);
+    }
+    
+    /* Adjust memory items for small mobile */
+    .memory-item {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .memory-item p {
+        font-size: 0.85rem;
+    }
+    
+    /* Adjust signature for small mobile */
+    .signature {
+        padding: 12px;
+        margin-top: 15px;
+    }
+    
+    .signature p {
+        font-size: 0.9rem;
+    }
+    
+    .signature-name {
+        font-size: 0.8rem;
+    }
+    
+    /* Adjust hug section for small mobile */
+    .hug-message p {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .hug-counter {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .surprise-btn {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+    }
+    
+    /* Adjust gallery for small mobile */
+    .gallery-item {
+        padding: 12px;
+        max-width: 160px;
+        width: 100%;
+    }
+    
+    .gallery-photo {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .gallery-image {
+        border-radius: 8px;
+    }
+    
+    .image-placeholder {
+        border-radius: 8px;
+    }
+    
+    .placeholder-icon {
+        font-size: 1.2rem;
+    }
+    
+    .image-placeholder p {
+        font-size: 0.5rem;
+    }
+    
+    .gallery-item p {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}
+
+/* Prevent zoom */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select, textarea, input {
+        font-size: 16px;
+    }
+}
+
+/* Prevent text selection */
+.album-cover, .page, .virtual-hug-btn, .popup-content button, .nav-btn, .close-album-btn, .surprise-btn, .music-btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+} 
