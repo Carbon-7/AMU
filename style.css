@@ -52,6 +52,10 @@ body {
     overflow-y: auto;
     touch-action: manipulation;
     -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @keyframes gentleGradient {
@@ -367,6 +371,26 @@ body {
 
 .floating-sunflowers {
     margin: 30px 0;
+}
+
+/* Image Protection */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* Allow pointer events for interactive images if needed */
+.meeting-photo,
+.gallery-image {
+    pointer-events: auto;
 }
 
 .floating-sunflowers span {

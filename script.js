@@ -44,8 +44,39 @@ window.addEventListener('load', () => {
         initializeAlbum();
         updateNavigation();
         setupMusic();
+        
+        // Add image protection after page loads
+        setTimeout(() => {
+            protectImages();
+        }, 1000);
     }, 3000);
 });
+
+// Image protection function
+function protectImages() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        // Add additional protection attributes
+        img.setAttribute('draggable', 'false');
+        img.style.pointerEvents = 'none';
+        
+        // Prevent image saving through various methods
+        img.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+        
+        img.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+        
+        img.addEventListener('selectstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+    });
+}
 
 // Setup music with better mobile support and autostart
 function setupMusic() {
@@ -79,6 +110,29 @@ function setupMusic() {
 
 // Setup Event Listeners
 function setupEventListeners() {
+    // Prevent right-click context menu
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Prevent drag and drop
+    document.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+        return false;
+    });
+    
+    // Prevent keyboard shortcuts for saving images
+    document.addEventListener('keydown', (e) => {
+        // Prevent Ctrl+S, Ctrl+U, F12
+        if ((e.ctrlKey && (e.key === 's' || e.key === 'u')) || e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        // Call the existing keyboard handler for navigation
+        handleKeyboard(e);
+    });
+    
     // Album cover click - improved mobile support
     albumCover.addEventListener('click', openAlbum);
     albumCover.addEventListener('touchstart', (e) => {
@@ -155,9 +209,6 @@ function setupEventListeners() {
     });
     
     // Touch/swipe events for mobile navigation - will be added when album opens
-    
-    // Keyboard shortcuts
-    document.addEventListener('keydown', handleKeyboard);
 }
 
 // Toggle music with better mobile support
